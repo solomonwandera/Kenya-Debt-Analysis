@@ -127,6 +127,8 @@ VALUES
   - Are there any siginificant increases or decreases on specific years or months
   - What patterns or cycles can be observed in the debt data
     - Trend of domestic,external and total debt over time
+    - ![Trend of debt](https://github.com/user-attachments/assets/42ca78d3-db5d-4979-a7db-aace389d53c8)
+
       
 
   
