@@ -4,8 +4,8 @@
 This project aims to analyze and forecast debt levels using a dataset containing information on domestic debt, external debt, total debt, and GDP, spanning multiple years and months. By leveraging SQL for data processing and Power BI for visualization, the project seeks to provide insights into debt trends and their relationship with GDP.
 
 ### Project Objectives
-1. [Data-Integration-and-Cleaning](#Data-Integration-and-Cleaning)
-2. [Trend-Analysis](#Trend-Analysis)
+1. [Data Integration and Cleaning](#Data-Integration-and-Cleaning)
+2. [Trend Analysis](#Trend-Analysis)
 3. [Limitations](#Limitations)
 4. [Recommendations](#Recommendations)
 
@@ -18,7 +18,7 @@ This project aims to analyze and forecast debt levels using a dataset containing
 - MS Excel
 
   
-### 1.Data-Integration-and-Cleaning
+### 1.Data Integration and Cleaning
 *a) Database creation*
 - At this stage we define a foudnation of storing our data by establishinga dedicated database to store all the information and also define the structure of the debt and GDP tables.
 ```sql
@@ -122,7 +122,7 @@ VALUES
   ('fx_rates', 'exchange_rate', 'VARCHAR(4)', 'Recorded annual KES/USD exchange rate', FALSE);
 ```
 
-### 2.Trend-Analysis
+### 2.Trend Analysis
 - In this section we conduct explaratory data analysis with the aim of analysing the trends of debt over the years, with key questions around
   - How has the national debt evolved over time ?
   - Are there any siginificant increases or decreases on specific years or months
