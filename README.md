@@ -116,6 +116,17 @@ VALUES
   ('debt', 'external_Debt', 'DECIMAL(25,2)', 'Amount of external debt in local currency - KES', FALSE),
   ('debt', 'total_Debt', 'DECIMAL(25,2)','Sum of domestic and external debt', FALSE),
   ('annual_gdp', 'gdp_usd', 'DECIMAL(25,2)', 'GDP at purchasers prices measures the total value of goods and services produced within a country, excluding depreciation and some subsidies. ItS reported in current US dollars using exchange rates.', FALSE),
-  ('annual_gdp', 'actual_year', 'VARCHAR(4)', 'Year of recorded gdp data', FALSE);
+  ('annual_gdp', 'actual_year', 'VARCHAR(4)', 'Year of recorded gdp data', FALSE)
+  ('fx_rates', 'year', 'VARCHAR(4)', 'Year of recorded exchange rate data', FALSE)
+  ('fx_rates', 'exchange_rate', 'VARCHAR(4)', 'Recorded annual KES/USD exchange rate', FALSE);
 ```
+
+### 2.Trend Analysis
+- In this section we conduct explaratory data analysis with the aim of analysing the trends of debt over the years, with key questions around
+  - How has the national debt evolved over time ?
+  - Are there any siginificant increases or decreases on specific years or months
+  - What patterns or cycles can be observed in the debt data
+    - Trend of domestic,external and total debt over time
+      
+
   
