@@ -4,9 +4,10 @@
 This project aims to analyze and forecast debt levels using a dataset containing information on domestic debt, external debt, total debt, and GDP, spanning multiple years and months. By leveraging SQL for data processing and Power BI for visualization, the project seeks to provide insights into debt trends and their relationship with GDP.
 
 ### Project Objectives
-1. Data Integration and Cleaning
-2. Trend Analysis
-3. Visualisation
+1. [Data Integration and Cleaning](#Data_Integration_and_Cleaning)
+2. [Trend Analysis](#Trend_Analysis)
+3. [Limitations](#Limitations)
+4. [Recommendations](#Recommendations)
 
 ### Data Sources
 [World Bank](https://databank.worldbank.org/reports.aspx?source=2&country=KEN#)
@@ -18,7 +19,7 @@ This project aims to analyze and forecast debt levels using a dataset containing
 
   
 ### 1.Data Integration and Cleaning
-a) Database creation
+*a) Database creation*
 - At this stage we define a foudnation of storing our data by establishinga dedicated database to store all the information and also define the structure of the debt and GDP tables.
 ```sql
 CREATE DATABASE kenya_economy;
@@ -37,7 +38,7 @@ CREATE TABLE annual_gdp(
   gdp_usd DECIMAL(25,2)
 );
 ```
-b) Data Enhancements
+*b) Data Enhancements*
 - We establish a total debt column with the sum of domestic and external debt  for each record, ensuring data completents and accuracy
 ```sql
 ALTER TABLE debt 
@@ -46,7 +47,7 @@ ADD total_debt DECIMAL(25,2);
 UPDATE debt
 SET total_debt = domestic_debt + external_debt;
 ```
-c) Data cleaning and transformation
+*c) Data cleaning and transformation*
 - To facilitate consistency , we extract and create a new column for the actual year in the gdp table to facilitate consistentcy and easier joins with the debt table.
 - We identify and remove any debt records with years that don't exist in the gdp table to prevent potential inconsistencies.
 ```sql
@@ -63,7 +64,7 @@ WHERE year NOT IN (SELECT actual_year FROM annual_gdp);
 DELETE FROM debt
 WHERE year = 2024;
 ```
-d) Additional data integration
+*d) Additional data integration*
 - We set up a new table 'fx_rates" to store foregin exchange rate data that can be integrated into the analysis to provided additional context and ennhancements.
 
 ``` sql
@@ -96,7 +97,7 @@ UPDATE debt
 JOIN new_dates ON debt.calculated_date = new_dates.calculated_date
 SET debt.calculated_date = new_dates.converted_date;
 ```
-f) Data documentation
+*e) Data documentation*
 - For clear understanding and reference, we define the structure and purpose of each column in our tables using a data dictionary.
 
 ```sql
@@ -125,9 +126,42 @@ VALUES
 - In this section we conduct explaratory data analysis with the aim of analysing the trends of debt over the years, with key questions around
   - How has the national debt evolved over time ?
   - Are there any siginificant increases or decreases on specific years or months
-  - What patterns or cycles can be observed in the debt data
-    - Trend of domestic,external and total debt over time
-    - ![Trend of debt](https://github.com/user-attachments/assets/42ca78d3-db5d-4979-a7db-aace389d53c8)
+  - What patterns or cycles can be observed in the debt data.
+
+    *a) Trend of domestic,external and total debt over time*  
+    - There has been a consistent increase in total debt over the years.However debt levels have dramatically increased in recent years, indicating rising borrowing or higher expenditure levels.  
+    - Significant jumps in total debt are observed around the years 2005, 2010, 2015, and 2020
+    
+    ![Trend of debt](https://github.com/user-attachments/assets/7b1eabb4-f38f-4a1f-a921-efd9f8e6a86a)
+       
+    *b) Debt composition*   
+    - Domestic debt has consistently been higher than external debt. However from around 2016,the gap between domestic and external debt seems to widening thus indicating a reliance on external sources for funding.  
+    - At present external debt stands at `52.93%` against domesticc debt at `47.07%`.
+    
+    ![Debt composition](https://github.com/user-attachments/assets/d24752dd-6ab3-4eb4-bafa-8b21eecf0a90)
+    
+    *c) Seasonality Patterns*  
+    - The debt levels exhibit a steady monthly increase across the years.  
+    - The map also highlights seasonal patterns in debt accumulation, which could be tied to fiscal policies or economic activities during specific years.  
+    
+    ![Cyclic Patterns](https://github.com/user-attachments/assets/c903635a-f4b3-4b49-b3a4-c02d67d63c34)
+
+    *d) Proportion of debt against GDP*  
+    - Both GDP and total debt have been increasing over time, but debt is growing at a faster rate.  
+    - While the economy (GDP) is growing, the debt levels are rising disproportionately, indicating that debt is growing faster than the economic output.  
+    
+    ![Debt v GDP proportion](https://github.com/user-attachments/assets/aad5a8c1-d452-4c3c-8110-c57d3bd61e38)
+
+### 3.Limitations
+-  Missing data points disrupts the projects ability of smoothing out short term fluctuations using a 12-month moving average.This inhibits the accuracy of forecasting the overall trend of debt projections.
+  
+### 4.Recommendations  
+- Debt Management Strategies: Given the rapid increase in debt levels, it is crucial to implement effective debt management strategies to ensure long-term sustainability.
+- Seasonal Fiscal Policies: Understanding the seasonal patterns in debt can help in planning fiscal policies and managing cash flows more effectively.
+- Monitoring Debt-to-GDP Ratio: Close monitoring of the debt-to-GDP ratio is essential to ensure that the debt levels remain within manageable limits relative to economic growth
+
+
+
 
       
 
